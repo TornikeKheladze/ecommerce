@@ -1,12 +1,15 @@
 import { Control, Controller, FieldError } from "react-hook-form";
 import { Text, TextInput, View } from "react-native";
-import { User } from "../../types/common";
+import Animated from "react-native-reanimated";
+import { useTranslateAnimation } from "../../hooks/useTranslateAnimation";
 
 type InputProps = {
-  fieldName: keyof User;
+  fieldName: string;
   error?: FieldError;
-  control: Control<User>;
+  control: Control<any>;
   displayName: string;
+  direction?: "x" | "y";
+  initialOffset?: number;
 };
 
 const Input: React.FC<InputProps> = ({
@@ -14,9 +17,17 @@ const Input: React.FC<InputProps> = ({
   displayName,
   error,
   control,
+  direction = "x",
+  initialOffset = -400,
 }) => {
+  const inputAnimatedStyle = useTranslateAnimation(
+    direction,
+    initialOffset,
+    300
+  );
+
   return (
-    <View className="w-full">
+    <Animated.View className="w-full" style={[inputAnimatedStyle]}>
       <Text className="mb-2 text-xl text-customBlack">{displayName}</Text>
       <Controller
         control={control}
@@ -25,7 +36,7 @@ const Input: React.FC<InputProps> = ({
             className="bg-white h-10 rounded-xl pl-2"
             onBlur={onBlur}
             onChangeText={onChange}
-            value={value}
+            value={String(value)}
             secureTextEntry={fieldName === "password" ? true : false}
             placeholder={displayName}
           />
@@ -40,7 +51,7 @@ const Input: React.FC<InputProps> = ({
       >
         {error?.message}
       </Text>
-    </View>
+    </Animated.View>
   );
 };
 
