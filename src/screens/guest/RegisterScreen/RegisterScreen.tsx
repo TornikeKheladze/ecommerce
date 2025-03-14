@@ -1,57 +1,27 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Switch } from "react-native";
 import React from "react";
 import { GuestStackParamList } from "../../../navigation/GuestStack";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import * as yup from "yup";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { User } from "../../../types/common";
 import Input from "../../../components/Input/Input";
-import { useTranslateAnimation } from "../../../hooks/useTranslateAnimation";
 import Animated from "react-native-reanimated";
-
-const registerSchema = yup.object().shape({
-  firstName: yup
-    .string()
-    .required("First Name is required")
-    .matches(/^[A-Za-z\s]+$/, "Only Letters"),
-  lastName: yup
-    .string()
-    .required("Last Name is required")
-    .matches(/^[A-Za-z\s]+$/, "Only Letters"),
-  email: yup.string().required("Email Required").email("Invalid Email"),
-  password: yup
-    .string()
-    .required("Password Required")
-    .min(8, "Minimum 8 Letters"),
-  passwordConfirmation: yup
-    .string()
-    .required("Password Confirmation Required")
-    .oneOf([yup.ref("password")], "Passwords must match"),
-});
+import { useRegisterScreen } from "./useRegisterScreen";
 
 type RegisterScreenProps = NativeStackScreenProps<
   GuestStackParamList,
   "Register"
 >;
 
-interface UserRegisterForm extends User {
-  passwordConfirmation: string;
-}
-
 const RegisterScreen: React.FC<RegisterScreenProps> = () => {
   const {
-    control,
     handleSubmit,
-    formState: { errors },
-  } = useForm<UserRegisterForm>({
-    resolver: yupResolver(registerSchema),
-  });
-
-  const onSubmit = (data: User) => {
-    console.log(data);
-  };
-  const submitAnimatedStyle = useTranslateAnimation("y", 400, 300);
+    control,
+    errors,
+    isAdmin,
+    onSubmit,
+    switchAnimatedStyle,
+    submitAnimatedStyle,
+    setValue,
+  } = useRegisterScreen();
 
   return (
     <View className="bg-mainBg flex-1 items-center pt-[30%] px-4 gap-4">
@@ -94,12 +64,22 @@ const RegisterScreen: React.FC<RegisterScreenProps> = () => {
         control={control}
         error={errors.passwordConfirmation}
       />
-
       <Animated.View
-        className="rounded-3xl p-4 bg-customBlack items-center w-1/2"
-        style={[submitAnimatedStyle]}
+        style={[switchAnimatedStyle]}
+        className="flex-row items-center justify-center mb-2 gap-4 self-start"
       >
-        <TouchableOpacity onPress={handleSubmit(onSubmit)}>
+        <Text className="text-xl text-customBlack">Admin</Text>
+        <Switch
+          value={isAdmin}
+          onValueChange={() => setValue("isAdmin", !isAdmin)}
+        />
+      </Animated.View>
+
+      <Animated.View className="w-1/2" style={[submitAnimatedStyle]}>
+        <TouchableOpacity
+          className="w-full p-4 rounded-3xl bg-customBlack items-center"
+          onPress={handleSubmit(onSubmit)}
+        >
           <Text className="text-white text-2xl">Register</Text>
         </TouchableOpacity>
       </Animated.View>

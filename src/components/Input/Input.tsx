@@ -37,7 +37,7 @@ const Input: React.FC<InputProps> = ({
             onBlur={onBlur}
             onChangeText={onChange}
             value={String(value)}
-            secureTextEntry={fieldName === "password" ? true : false}
+            secureTextEntry={fieldName.includes("password") ? true : false}
             placeholder={displayName}
           />
         )}
