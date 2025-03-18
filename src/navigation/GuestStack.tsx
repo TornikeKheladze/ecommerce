@@ -1,11 +1,11 @@
 import React from "react";
-import HomeScreen from "../screens/guest/HomeScreen/HomeScreen";
-import LoginScreen from "../screens/guest/LoginScreen/LoginScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import LandingScreen from "../screens/guest/LandingScreen/LandingScreen";
+import LoginScreen from "../screens/guest/LoginScreen/LoginScreen";
 import RegisterScreen from "../screens/guest/RegisterScreen/RegisterScreen";
 
 export type GuestStackParamList = {
-  Home: undefined;
+  Landing: undefined;
   Login: undefined;
   Register: undefined;
 };
@@ -15,8 +15,8 @@ const GuestStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Home"
-        component={HomeScreen}
+        name="Landing"
+        component={LandingScreen}
         options={{ title: "Welcome" }}
       />
       <Stack.Screen

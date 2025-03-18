@@ -5,9 +5,12 @@ import { GuestStackParamList } from "../../../navigation/GuestStack";
 import Animated from "react-native-reanimated";
 import { useTranslateAnimation } from "../../../hooks/useTranslateAnimation";
 
-type HomeScreenProps = NativeStackScreenProps<GuestStackParamList, "Home">;
+type LandingScreenProps = NativeStackScreenProps<
+  GuestStackParamList,
+  "Landing"
+>;
 
-const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
+const LandingScreen: React.FC<LandingScreenProps> = ({ navigation }) => {
   const registerAnimatedStyle = useTranslateAnimation("x", -400, 300);
   const loginAnimatedStyle = useTranslateAnimation("x", 400, 300);
 
@@ -33,4 +36,4 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   );
 };
 
-export default HomeScreen;
+export default LandingScreen;
