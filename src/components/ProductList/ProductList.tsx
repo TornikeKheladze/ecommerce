@@ -43,6 +43,10 @@ const ProductList: React.FC<ProductListPropTypes> = ({ products }) => {
               ? `${item.title.slice(0, 40)}...`
               : item.title}
           </Text>
+          <View className="flex-row justify-between w-full mt-4">
+            <Text className="text-sm">{item.price}$</Text>
+            <Text className="text-sm">{item.rating.rate}/5</Text>
+          </View>
         </TouchableOpacity>
       ))}
     </View>
