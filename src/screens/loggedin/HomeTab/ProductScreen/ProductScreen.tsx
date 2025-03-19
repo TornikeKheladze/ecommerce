@@ -1,10 +1,11 @@
-import { View, Text, Animated, FlatList } from "react-native";
+import { View, Animated, FlatList } from "react-native";
 import React, { useRef } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import SlideItem from "../HomeScreen/Carrousel/SlideItem";
 import Dots from "../HomeScreen/Carrousel/Dots";
 import { HomeStackParamList } from "../../../../navigation/AuthStacks/HomeStack";
 import ProductHeader from "./ProductHeader/ProductHeader";
+import Txt from "../../../../components/Txt/Txt";
 
 type ProductScreenProps = NativeStackScreenProps<HomeStackParamList, "Product">;
 
@@ -41,7 +42,7 @@ const ProductScreen: React.FC<ProductScreenProps> = ({ route }) => {
         />
         <Dots data={testdata} scrollX={scrollX} slideRef={slideRef} />
       </View>
-      <Text>{route.params.product.title}</Text>
+      <Txt>{route.params.product.title}</Txt>
     </View>
   );
 };

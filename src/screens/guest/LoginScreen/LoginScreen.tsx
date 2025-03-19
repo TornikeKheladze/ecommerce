@@ -1,10 +1,11 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import React from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { GuestStackParamList } from "../../../navigation/GuestStack";
 import Input from "../../../components/Input/Input";
 import Animated from "react-native-reanimated";
 import { useLoginScreen } from "./useLoginScreen";
+import Txt from "../../../components/Txt/Txt";
 
 type LoginScreenProps = NativeStackScreenProps<GuestStackParamList, "Login">;
 
@@ -32,7 +33,7 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
           className="w-full p-4 rounded-3xl bg-customBlack items-center"
           onPress={handleSubmit(onSubmit)}
         >
-          <Text className="text-white text-2xl">Login</Text>
+          <Txt className="text-white text-2xl">Login</Txt>
         </TouchableOpacity>
       </Animated.View>
     </View>

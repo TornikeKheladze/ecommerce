@@ -1,10 +1,11 @@
-import { View, Text, TouchableOpacity, Switch } from "react-native";
+import { View, TouchableOpacity, Switch } from "react-native";
 import React from "react";
 import { GuestStackParamList } from "../../../navigation/GuestStack";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import Input from "../../../components/Input/Input";
 import Animated from "react-native-reanimated";
 import { useRegisterScreen } from "./useRegisterScreen";
+import Txt from "../../../components/Txt/Txt";
 
 type RegisterScreenProps = NativeStackScreenProps<
   GuestStackParamList,
@@ -68,7 +69,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = () => {
         style={[switchAnimatedStyle]}
         className="flex-row items-center justify-center mb-2 gap-4 self-start"
       >
-        <Text className="text-xl text-customBlack">Admin</Text>
+        <Txt className="text-xl text-customBlack">Admin</Txt>
         <Switch
           value={isAdmin}
           onValueChange={() => setValue("isAdmin", !isAdmin)}
@@ -80,7 +81,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = () => {
           className="w-full p-4 rounded-3xl bg-customBlack items-center"
           onPress={handleSubmit(onSubmit)}
         >
-          <Text className="text-white text-2xl">Register</Text>
+          <Txt className="text-white text-2xl">Register</Txt>
         </TouchableOpacity>
       </Animated.View>
     </View>

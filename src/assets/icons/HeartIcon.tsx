@@ -1,8 +1,9 @@
 import * as React from "react";
 import Svg, { Path } from "react-native-svg";
 import { memo } from "react";
-const SvgComponent: React.FC<{ color?: string }> = ({
+const SvgComponent: React.FC<{ color?: string; fill?: string }> = ({
   color = "currentColor",
+  fill = "none",
 }) => (
   <Svg
     //@ts-ignore
@@ -13,7 +14,7 @@ const SvgComponent: React.FC<{ color?: string }> = ({
     height={25}
   >
     <Path
-      fill="none"
+      fill={fill}
       stroke={color}
       strokeLinecap="round"
       strokeLinejoin="round"

@@ -1,7 +1,8 @@
 import { Control, Controller, FieldError } from "react-hook-form";
-import { Text, TextInput, View } from "react-native";
+import { TextInput } from "react-native";
 import Animated from "react-native-reanimated";
 import { useTranslateAnimation } from "../../hooks/useTranslateAnimation";
+import Txt from "../Txt/Txt";
 
 type InputProps = {
   fieldName: string;
@@ -28,7 +29,7 @@ const Input: React.FC<InputProps> = ({
 
   return (
     <Animated.View className="w-full" style={[inputAnimatedStyle]}>
-      <Text className="mb-2 text-xl text-customBlack">{displayName}</Text>
+      <Txt className="mb-2 text-xl text-customBlack">{displayName}</Txt>
       <Controller
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
@@ -44,13 +45,13 @@ const Input: React.FC<InputProps> = ({
         name={fieldName}
         defaultValue=""
       />
-      <Text
+      <Txt
         className={`text-red-500 text-sm transition-opacity duration-300 ${
           error ? "opacity-100" : "opacity-0"
         }`}
       >
         {error?.message}
-      </Text>
+      </Txt>
     </Animated.View>
   );
 };

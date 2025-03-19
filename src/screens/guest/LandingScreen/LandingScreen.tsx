@@ -1,9 +1,10 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import React from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { GuestStackParamList } from "../../../navigation/GuestStack";
 import Animated from "react-native-reanimated";
 import { useTranslateAnimation } from "../../../hooks/useTranslateAnimation";
+import Txt from "../../../components/Txt/Txt";
 
 type LandingScreenProps = NativeStackScreenProps<
   GuestStackParamList,
@@ -21,7 +22,7 @@ const LandingScreen: React.FC<LandingScreenProps> = ({ navigation }) => {
           className="w-full p-4 rounded-3xl bg-customBlack items-center"
           onPress={() => navigation.navigate("Register")}
         >
-          <Text className="text-white text-2xl">Register</Text>
+          <Txt className="text-white text-2xl">Register</Txt>
         </TouchableOpacity>
       </Animated.View>
       <Animated.View style={[loginAnimatedStyle]} className="w-1/2">
@@ -29,7 +30,7 @@ const LandingScreen: React.FC<LandingScreenProps> = ({ navigation }) => {
           className="w-full p-4 rounded-3xl bg-customBlack items-center"
           onPress={() => navigation.navigate("Login")}
         >
-          <Text className="text-white text-2xl">Login</Text>
+          <Txt className="text-white text-2xl">Login</Txt>
         </TouchableOpacity>
       </Animated.View>
     </View>

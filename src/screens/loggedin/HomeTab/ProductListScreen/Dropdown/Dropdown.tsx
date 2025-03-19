@@ -1,7 +1,8 @@
 import React from "react";
-import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { MultiSelect } from "react-native-element-dropdown";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import Txt from "../../../../../components/Txt/Txt";
 
 type ItemType = { label: string; value: string };
 
@@ -20,7 +21,7 @@ const Dropdown: React.FC<DropdownProps> = ({ data, values, setValues }) => {
           selected ? "bg-gray-400" : "bg-gray-100"
         }`}
       >
-        <Text style={styles.selectedTextStyle}>{item.label}</Text>
+        <Txt style={styles.selectedTextStyle}>{item.label}</Txt>
       </View>
     );
   };
@@ -45,7 +46,7 @@ const Dropdown: React.FC<DropdownProps> = ({ data, values, setValues }) => {
         renderSelectedItem={(item, unSelect) => (
           <TouchableOpacity onPress={() => unSelect && unSelect(item)}>
             <View style={styles.selectedStyle}>
-              <Text style={styles.textSelectedStyle}>{item.label}</Text>
+              <Txt style={styles.textSelectedStyle}>{item.label}</Txt>
               <AntDesign color="black" name="delete" size={15} />
             </View>
           </TouchableOpacity>

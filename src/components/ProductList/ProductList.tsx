@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { Product } from "../../types/common";
 import { HeartIcon } from "../../assets/icons";
@@ -8,6 +8,7 @@ import { HomeStackParamList } from "../../navigation/AuthStacks/HomeStack";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { saveFavourites } from "../../store/favouritesSlice";
+import Txt from "../Txt/Txt";
 
 type ProductListPropTypes = {
   products: Product[];
@@ -69,14 +70,14 @@ const ProductList: React.FC<ProductListPropTypes> = ({ products }) => {
             }}
             source={{ uri: item.image }}
           />
-          <Text className="text-sm text-center">
+          <Txt className="text-sm text-center">
             {item.title.length > 40
               ? `${item.title.slice(0, 40)}...`
               : item.title}
-          </Text>
+          </Txt>
           <View className="flex-row justify-between w-full mt-4">
-            <Text className="text-sm">{item.price}$</Text>
-            <Text className="text-sm">{item.rating.rate}/5</Text>
+            <Txt className="text-sm">{item.price.toString()}$</Txt>
+            <Txt className="text-sm">{item.rating.rate.toString()}/5</Txt>
           </View>
         </TouchableOpacity>
       ))}

@@ -1,7 +1,8 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import React from "react";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { SortConfig } from "../ProductListScreen";
+import Txt from "../../../../../components/Txt/Txt";
 
 type SortBtnProps = {
   setSortConfig: React.Dispatch<React.SetStateAction<SortConfig>>;
@@ -29,7 +30,7 @@ const SortBtn: React.FC<SortBtnProps> = ({
           : "bg-gray-400"
       }  py-1 px-4 flex-row items-center gap-2`}
     >
-      <Text className="text-white">{setValues.direction.toUpperCase()}</Text>
+      <Txt className="text-white">{setValues.direction.toUpperCase()}</Txt>
       <AntDesign
         name={setValues.direction === "asc" ? "caretup" : "caretdown"}
         size={15}

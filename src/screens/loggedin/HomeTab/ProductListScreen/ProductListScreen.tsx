@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TouchableOpacity, Modal } from "react-native";
+import { View, ScrollView, TouchableOpacity, Modal } from "react-native";
 import React, { useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { HomeStackParamList } from "../../../../navigation/AuthStacks/HomeStack";
@@ -9,6 +9,7 @@ import { BackIcon, FilterIcon } from "../../../../assets/icons";
 import Dropdown from "./Dropdown/Dropdown";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import SortBtn from "./SortBtn/SortBtn";
+import Txt from "../../../../components/Txt/Txt";
 
 type ProductListScreenProps = NativeStackScreenProps<
   HomeStackParamList,
@@ -87,16 +88,16 @@ const ProductListScreen: React.FC<ProductListScreenProps> = ({
           >
             <AntDesign name="closecircleo" size={24} color="white" />
           </TouchableOpacity>
-          <Text className="text-white mt-8 text-xl">Filter By Category</Text>
+          <Txt className="text-white mt-8 text-xl">Filter By Category</Txt>
           <Dropdown
             values={activeCategories}
             setValues={setActiveCategories}
             data={categories.map((c) => ({ label: c, value: c }))}
           />
           <View className="mt-8 items-center w-full ">
-            <Text className="text-white text-xl ">Sort By</Text>
+            <Txt className="text-white text-xl ">Sort By</Txt>
             <View className="flex-row items-center gap-4 w-full justify-between">
-              <Text className="text-white p-3 rounded-xl">Price:</Text>
+              <Txt className="text-white p-3 rounded-xl">Price:</Txt>
               <SortBtn
                 sortConfig={sortConfig}
                 setSortConfig={setSortConfig}
@@ -125,7 +126,7 @@ const ProductListScreen: React.FC<ProductListScreenProps> = ({
               </TouchableOpacity>
             </View>
             <View className="flex-row items-center gap-4 w-full justify-between">
-              <Text className="text-white p-3 rounded-xl">Rating:</Text>
+              <Txt className="text-white p-3 rounded-xl">Rating:</Txt>
               <SortBtn
                 sortConfig={sortConfig}
                 setSortConfig={setSortConfig}
@@ -164,7 +165,7 @@ const ProductListScreen: React.FC<ProductListScreenProps> = ({
         >
           <BackIcon color="#0d0c22" size={20} />
         </TouchableOpacity>
-        <Text className="text-white text-3xl">Products</Text>
+        <Txt className="text-white text-3xl">Products</Txt>
         <TouchableOpacity
           onPress={() => setIsOpen(true)}
           className="bg-mainBg p-2 rounded-xl flex-row items-center justify-between"
