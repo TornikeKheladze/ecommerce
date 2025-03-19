@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "./userSlice";
 import productSlice from "./productSlice";
+import favouritesSlice from "./favouritesSlice";
 import {
   persistStore,
   persistReducer,
@@ -20,11 +21,13 @@ const persistConfig = {
 
 const persistedUserReducer = persistReducer(persistConfig, userSlice);
 const persistedProductReducer = persistReducer(persistConfig, productSlice);
+const persistedFavReducer = persistReducer(persistConfig, favouritesSlice);
 
 export const store = configureStore({
   reducer: {
     users: persistedUserReducer,
     products: persistedProductReducer,
+    favourites: persistedFavReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

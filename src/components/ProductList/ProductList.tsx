@@ -5,6 +5,9 @@ import { HeartIcon } from "../../assets/icons";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { HomeStackParamList } from "../../navigation/AuthStacks/HomeStack";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store/store";
+import { saveFavourites } from "../../store/favouritesSlice";
 
 type ProductListPropTypes = {
   products: Product[];
@@ -13,6 +16,27 @@ type ProductListPropTypes = {
 const ProductList: React.FC<ProductListPropTypes> = ({ products }) => {
   const navigation =
     useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
+  const dispatch = useDispatch<AppDispatch>();
+  const { authorizedUser } = useSelector((store: RootState) => store.users);
+  const { usersWithFav } = useSelector((store: RootState) => store.favourites);
+  const favouriteProducts = usersWithFav.find(
+    (item) => item.userEmail === authorizedUser?.email
+  )?.favProducts;
+
+  const onFavouritePress = (product: Product) => {
+    const updateProducts = favouriteProducts
+      ?.map((f) => f.id)
+      .includes(product.id)
+      ? favouriteProducts.filter((f) => f.id !== product.id)
+      : [...(favouriteProducts || []), product];
+
+    dispatch(
+      saveFavourites({
+        products: updateProducts,
+        userEmail: authorizedUser?.email as string,
+      })
+    );
+  };
 
   const goToProductPage = (product: Product) => {
     navigation.navigate("Product", { product });
@@ -26,7 +50,14 @@ const ProductList: React.FC<ProductListPropTypes> = ({ products }) => {
           key={item.id}
           className="rounded-2xl w-[44%] h-52 bg-white justify-center items-center p-2 relative"
         >
-          <TouchableOpacity className="absolute top-2 right-2 bg-gray-100 rounded-md p-1">
+          <TouchableOpacity
+            onPress={() => onFavouritePress(item)}
+            className={`absolute top-2 right-2 rounded-md p-1 ${
+              favouriteProducts?.map((f) => f.id).includes(item.id)
+                ? "bg-yellow-300"
+                : "bg-gray-100"
+            }`}
+          >
             <HeartIcon color="black" />
           </TouchableOpacity>
           <Image

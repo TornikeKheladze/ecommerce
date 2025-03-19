@@ -75,7 +75,7 @@ const ProductListScreen: React.FC<ProductListScreenProps> = ({
 
   return (
     <View className="pb-36">
-      <Modal animationType="slide" transparent={true} visible={isOpen}>
+      <Modal animationType="fade" transparent={true} visible={isOpen}>
         <TouchableOpacity
           className="absolute top-0 left-0 right-0 bottom-0 bg-black/50"
           onPress={() => setIsOpen(false)}

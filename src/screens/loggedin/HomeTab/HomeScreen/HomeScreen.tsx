@@ -8,7 +8,6 @@ import {
 import React from "react";
 import { useSelector } from "react-redux";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import Header from "./Header/Header";
 import { HomeStackParamList } from "../../../../navigation/AuthStacks/HomeStack";
 import { Product } from "../../../../types/common";
 import { RootState } from "../../../../store/store";
@@ -31,8 +30,10 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   const popularProducts = findPopularProducts(products, 6);
 
   return (
-    <View className="pb-36">
-      <Header title="Categories" />
+    <View className="pb-36 ">
+      <View className="bg-customBlack h-32 justify-end pb-3 items-center">
+        <Text className="text-white text-3xl">Categories</Text>
+      </View>
       <ScrollView className="bg-mainBg mt-4">
         <FlatList
           horizontal

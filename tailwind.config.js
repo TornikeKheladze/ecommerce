@@ -5,6 +5,9 @@ module.exports = {
   presets: [require("nativewind/preset")],
   theme: {
     extend: {
+      fontFamily: {
+        inter: ["Inter"],
+      },
       colors: {
         // mainBg: "#EDE8F5",
         mainBg: "#ecf0f1",
