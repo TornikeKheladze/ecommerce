@@ -4,7 +4,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { BackIcon, HeartIcon } from "../../../../../assets/icons";
 
-const ProductHeader = () => {
+const ProductHeader: React.FC<{
+  iconClassName: string;
+  onFavouritePress: () => void;
+}> = ({ iconClassName, onFavouritePress }) => {
   const { goBack, canGoBack } = useNavigation();
 
   return (
@@ -16,13 +19,16 @@ const ProductHeader = () => {
       {canGoBack() && (
         <TouchableOpacity
           onPress={goBack}
-          className="rounded-lg bg-white w-10 h-10 items-center justify-center"
+          className="rounded-lg bg-gray-100 w-10 h-10 items-center justify-center"
         >
           <BackIcon color="black" />
         </TouchableOpacity>
       )}
 
-      <TouchableOpacity className="rounded-lg bg-white w-10 h-10 items-center justify-center">
+      <TouchableOpacity
+        className={`rounded-lg w-10 h-10 items-center justify-center ${iconClassName}`}
+        onPress={onFavouritePress}
+      >
         <HeartIcon color="black" />
       </TouchableOpacity>
     </SafeAreaView>

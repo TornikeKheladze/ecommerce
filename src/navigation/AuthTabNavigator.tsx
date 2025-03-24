@@ -4,11 +4,14 @@ import { HeartIcon, HomeIcon, ProfileIcon } from "../assets/icons";
 import HomeStack from "./AuthStacks/HomeStack";
 import ProfileStack from "./AuthStacks/ProfileStack";
 import FavouritesStack from "./AuthStacks/FavouritesStack";
+import CartStack from "./AuthStacks/CartStack";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
 export type AuthTabParamList = {
   ProfileStack: undefined;
   HomeStack: undefined;
   FavouritesStack: undefined;
+  CartStack: undefined;
 };
 
 const Tab = createBottomTabNavigator<AuthTabParamList>();
@@ -25,6 +28,14 @@ const AuthTabNavigator = () => {
             return <ProfileIcon color={focused ? "black" : "#7f8c8d"} />;
           } else if (route.name === "FavouritesStack") {
             return <HeartIcon color={focused ? "black" : "#7f8c8d"} />;
+          } else if (route.name === "CartStack") {
+            return (
+              <AntDesign
+                name="shoppingcart"
+                size={26}
+                color={focused ? "black" : "#7f8c8d"}
+              />
+            );
           }
         },
         tabBarActiveTintColor: "black",
@@ -40,6 +51,11 @@ const AuthTabNavigator = () => {
         name="FavouritesStack"
         component={FavouritesStack}
         options={{ title: "Favourites" }}
+      />
+      <Tab.Screen
+        name="CartStack"
+        component={CartStack}
+        options={{ title: "Cart" }}
       />
       <Tab.Screen
         name="ProfileStack"

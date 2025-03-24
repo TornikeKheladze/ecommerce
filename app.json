@@ -36,6 +36,15 @@
             "./assets/fonts/Inter_18pt-Medium.ttf"
           ]
         }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission": "Allow ecommerce to access your camera",
+          "microphonePermission": "Allow ecommerce to access your microphone",
+          "photosPermission": "The app accesses your photos to let you share them with your friends.",
+          "recordAudioAndroid": true
+        }
       ]
     ]
   }

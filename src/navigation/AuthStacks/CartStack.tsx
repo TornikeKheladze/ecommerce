@@ -1,22 +1,22 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import FavouritesScreen from "../../screens/loggedin/FavTab/FavouritesScreen/FavouritesScreen";
 import ProductScreen from "../../screens/loggedin/HomeTab/ProductScreen/ProductScreen";
 import { Product } from "../../types/common";
+import CartScreen from "../../screens/loggedin/CartTab/CartScreen/CartScreen";
 
-export type FavouritesStackParamList = {
-  FavouritesList: undefined;
+export type CartStackParamList = {
+  Cart: undefined;
   Product: { product: Product };
 };
-export const Stack = createNativeStackNavigator<FavouritesStackParamList>();
+export const Stack = createNativeStackNavigator<CartStackParamList>();
 
-const FavouritesStack = () => {
+const CartStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="FavouritesList" component={FavouritesScreen} />
+      <Stack.Screen name="Cart" component={CartScreen} />
       <Stack.Screen name="Product" component={ProductScreen} />
     </Stack.Navigator>
   );
 };
 
-export default FavouritesStack;
+export default CartStack;
