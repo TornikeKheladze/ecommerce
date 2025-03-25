@@ -19,6 +19,15 @@ import { mmkvStorage } from "./storage";
 const persistConfig = {
   key: "root",
   storage: mmkvStorage,
+  // whitelist: [
+  //   "categories",
+  //   "products",
+  //   "userPurchases",
+  //   "userWithCart",
+  //   "usersWithFav",
+  //   "authorizedUser",
+  //   "users",
+  // ],
 };
 
 const persistedUserReducer = persistReducer(persistConfig, userSlice);

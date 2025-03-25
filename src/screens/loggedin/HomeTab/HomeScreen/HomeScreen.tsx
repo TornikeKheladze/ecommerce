@@ -11,7 +11,7 @@ import Txt from "../../../../components/Txt/Txt";
 type HomeScreenProps = NativeStackScreenProps<HomeStackParamList, "Home">;
 
 const findPopularProducts = (products: Product[], numOfItems: number) => {
-  const sorted = products
+  const sorted = [...products]
     .sort((a, b) => b.rating.count - a.rating.count)
     .slice(0, numOfItems);
   return sorted;

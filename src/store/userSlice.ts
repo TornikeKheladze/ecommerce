@@ -16,8 +16,9 @@ const userSlice = createSlice({
     saveAuthUser: (state, action: PayloadAction<User>) => {
       state.authorizedUser = action.payload;
     },
+    logout: (state) => (state.authorizedUser = undefined),
   },
 });
 
-export const { registerUser, saveAuthUser } = userSlice.actions;
+export const { registerUser, saveAuthUser, logout } = userSlice.actions;
 export default userSlice.reducer;

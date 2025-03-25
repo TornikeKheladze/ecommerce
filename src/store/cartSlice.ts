@@ -29,8 +29,11 @@ const cartSlice = createSlice({
         state.userWithCart.push({ userEmail, cartProducts: products });
       }
     },
+    clearCart: (state) => {
+      state.userWithCart = [];
+    },
   },
 });
 
-export const { saveCartProducts } = cartSlice.actions;
+export const { saveCartProducts, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -5,7 +5,6 @@ import { useTranslateAnimation } from "../../../hooks/useTranslateAnimation";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store/store";
 import { saveAuthUser } from "../../../store/userSlice";
-import { User } from "../../../types/common";
 
 const loginSchema = yup.object().shape({
   email: yup.string().required("Email Required").email("Invalid Email"),
@@ -35,7 +34,7 @@ export const useLoginScreen = () => {
       (user) => data.email === user.email && data.password === user.password
     );
     if (userToLogin) {
-      dispatch(saveAuthUser(data as User));
+      dispatch(saveAuthUser(userToLogin));
     } else {
       setError("password", {
         message: "Email or password is not correct",

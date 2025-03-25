@@ -80,17 +80,12 @@ export const useCartScreen = (
     Alert.alert("Success", "Products Purchased", [
       {
         text: "Go To Home Page",
-        onPress: () => navigation.getParent()?.navigate("HomeStack"),
+        onPress: () => {
+          navigation.getParent()?.navigate("HomeStack");
+          // dispatch(clearCart());
+        },
       },
     ]);
-    setTimeout(() => {
-      dispatch(
-        saveCartProducts({
-          userEmail: authorizedUser?.email as string,
-          products: [],
-        })
-      );
-    }, 2000);
   };
 
   const onPurchasePress = () => {
