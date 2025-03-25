@@ -29,6 +29,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = () => {
       <View className="flex-row gap-4">
         <View className="flex-1">
           <Input
+            animate={true}
             fieldName="firstName"
             displayName={"First Name"}
             control={control}
@@ -38,6 +39,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = () => {
         </View>
         <View className="flex-1">
           <Input
+            animate={true}
             fieldName="lastName"
             displayName={"Last Name"}
             control={control}
@@ -47,12 +49,14 @@ const RegisterScreen: React.FC<RegisterScreenProps> = () => {
         </View>
       </View>
       <Input
+        animate={true}
         fieldName="email"
         displayName={"Email"}
         control={control}
         error={errors.email}
       />
       <Input
+        animate={true}
         fieldName="password"
         displayName={"Password"}
         control={control}
@@ -60,6 +64,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = () => {
         initialOffset={400}
       />
       <Input
+        animate={true}
         fieldName="passwordConfirmation"
         displayName={"Confirm Password"}
         control={control}

@@ -1,8 +1,10 @@
 import { Control, Controller, FieldError } from "react-hook-form";
-import { TextInput } from "react-native";
+import { TextInput, TouchableOpacity } from "react-native";
 import Animated from "react-native-reanimated";
 import { useTranslateAnimation } from "../../hooks/useTranslateAnimation";
 import Txt from "../Txt/Txt";
+import Feather from "@expo/vector-icons/Feather";
+import { useState } from "react";
 
 type InputProps = {
   fieldName: string;
@@ -11,6 +13,7 @@ type InputProps = {
   displayName: string;
   direction?: "x" | "y";
   initialOffset?: number;
+  animate?: boolean;
 };
 
 const Input: React.FC<InputProps> = ({
@@ -20,15 +23,18 @@ const Input: React.FC<InputProps> = ({
   control,
   direction = "x",
   initialOffset = -400,
+  animate = false,
 }) => {
-  const inputAnimatedStyle = useTranslateAnimation(
-    direction,
-    initialOffset,
-    300
-  );
+  const inputAnimatedStyle = animate
+    ? [useTranslateAnimation(direction, initialOffset, 300)]
+    : [];
+  const [isHidden, setIsHidden] = useState(true);
+
+  const isPasswordInput =
+    fieldName.includes("password") || fieldName.includes("Password");
 
   return (
-    <Animated.View className="w-full" style={[inputAnimatedStyle]}>
+    <Animated.View className="w-full" style={inputAnimatedStyle}>
       <Txt className="mb-2 text-xl text-customBlack">{displayName}</Txt>
       <Controller
         control={control}
@@ -38,13 +44,26 @@ const Input: React.FC<InputProps> = ({
             onBlur={onBlur}
             onChangeText={onChange}
             value={String(value)}
-            secureTextEntry={fieldName.includes("password") ? true : false}
+            secureTextEntry={isPasswordInput ? isHidden : false}
             placeholder={displayName}
           />
         )}
         name={fieldName}
         defaultValue=""
       />
+      {isPasswordInput && (
+        <TouchableOpacity
+          onPress={() => setIsHidden(!isHidden)}
+          className="absolute right-3 top-11"
+        >
+          <Feather
+            name={isHidden ? "eye-off" : "eye"}
+            size={20}
+            color="black"
+          />
+        </TouchableOpacity>
+      )}
+
       <Txt
         className={`text-red-500 text-sm transition-opacity duration-300 ${
           error ? "opacity-100" : "opacity-0"

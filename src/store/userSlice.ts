@@ -6,6 +6,11 @@ const initialState: { authorizedUser: User | undefined; users: User[] } = {
   users: [],
 };
 
+type ChangePasswordPayload = {
+  email: string;
+  password: string;
+};
+
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -17,8 +22,18 @@ const userSlice = createSlice({
       state.authorizedUser = action.payload;
     },
     logout: (state) => (state.authorizedUser = undefined),
+    changePassword: (state, action: PayloadAction<ChangePasswordPayload>) => {
+      const { email, password } = action.payload;
+      const userIndex = state.users.findIndex((item) => item.email === email);
+      if (userIndex !== -1) {
+        const updatedUser = { ...state.users[userIndex], password };
+        state.users[userIndex] = updatedUser;
+        state.authorizedUser = updatedUser;
+      }
+    },
   },
 });
 
-export const { registerUser, saveAuthUser, logout } = userSlice.actions;
+export const { registerUser, saveAuthUser, logout, changePassword } =
+  userSlice.actions;
 export default userSlice.reducer;

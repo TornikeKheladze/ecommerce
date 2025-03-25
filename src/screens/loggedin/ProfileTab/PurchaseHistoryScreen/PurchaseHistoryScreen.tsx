@@ -19,9 +19,9 @@ const PurchaseHistoryScreen: React.FC<PurchaseHistoryScreenProps> = ({
   const { canGoBack, goBack } = navigation;
   const { userPurchases } = useSelector((store: RootState) => store.purchase);
   const { authorizedUser } = useSelector((store: RootState) => store.users);
-  const purchases = userPurchases.filter(
-    (item) => item.userEmail === authorizedUser?.email
-  );
+  const purchases = userPurchases
+    .filter((item) => item.userEmail === authorizedUser?.email)
+    .reverse();
 
   const getGroupedItems = (products: Product[]) => {
     const groupedItems = Object.values(

@@ -25,7 +25,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   const popularProducts = findPopularProducts(products, 6);
 
   return (
-    <View className="pb-36 ">
+    <View className="flex-1">
       <View className="bg-customBlack h-32 justify-end pb-3 items-center">
         <Txt className="text-white text-3xl">Categories</Txt>
       </View>

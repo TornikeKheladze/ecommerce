@@ -44,7 +44,7 @@ const ProductList: React.FC<ProductListPropTypes> = ({ products }) => {
   };
 
   return (
-    <View className="flex-1 flex-row flex-wrap items-center justify-center gap-5">
+    <View className="flex-1 flex-row flex-wrap items-center justify-center gap-5 py-4">
       {products.map((item) => (
         <TouchableOpacity
           onPress={() => goToProductPage(item)}

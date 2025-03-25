@@ -61,7 +61,10 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
         </View>
         <AntDesign name="right" size={20} color="black" />
       </TouchableOpacity>
-      <TouchableOpacity className="bg-white p-4 my-3 w-2/3 rounded-2xl py-5 flex-row justify-between">
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Settings")}
+        className="bg-white p-4 my-3 w-2/3 rounded-2xl py-5 flex-row justify-between"
+      >
         <View className="flex-row items-center gap-3">
           <Ionicons name="settings-outline" size={22} color="black" />
           <Txt>Settings</Txt>

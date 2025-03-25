@@ -21,12 +21,14 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
         control={control}
         error={errors.email}
         initialOffset={400}
+        animate={true}
       />
       <Input
         fieldName="password"
         displayName={"Password"}
         control={control}
         error={errors.password}
+        animate={true}
       />
       <Animated.View className="w-1/2" style={[submitAnimatedStyle]}>
         <TouchableOpacity

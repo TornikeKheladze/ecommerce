@@ -75,7 +75,7 @@ const ProductListScreen: React.FC<ProductListScreenProps> = ({
   });
 
   return (
-    <View className="pb-36">
+    <View className="flex-1">
       <Modal animationType="fade" transparent={true} visible={isOpen}>
         <TouchableOpacity
           className="absolute top-0 left-0 right-0 bottom-0 bg-black/50"
@@ -174,7 +174,7 @@ const ProductListScreen: React.FC<ProductListScreenProps> = ({
         </TouchableOpacity>
       </View>
 
-      <ScrollView className="bg-mainBg pt-4">
+      <ScrollView className="bg-mainBg">
         <ProductList products={productsToRender} />
       </ScrollView>
     </View>

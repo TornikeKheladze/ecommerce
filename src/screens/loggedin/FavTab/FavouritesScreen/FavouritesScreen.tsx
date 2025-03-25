@@ -29,7 +29,7 @@ const FavouritesScreen: React.FC<FavouritesScreenProps> = () => {
           No Favourite Products Yet
         </Txt>
       ) : (
-        <ScrollView className=" pt-4 flex-1">
+        <ScrollView className="flex-1">
           <ProductList products={favouriteProducts} />
         </ScrollView>
       )}
