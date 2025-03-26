@@ -45,7 +45,6 @@ const PasswordUpdateScreen: React.FC<PasswordUpdateScreenProps> = ({
     control,
     handleSubmit,
     formState: { errors },
-    setError,
   } = useForm<PasswordResetForm>({
     resolver: yupResolver(loginSchema),
   });

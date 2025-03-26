@@ -1,9 +1,8 @@
-import { Button, Image, TouchableOpacity, View } from "react-native";
+import { Image, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { ProfileStackParamList } from "../../../../navigation/AuthStacks/ProfileStack";
 import Txt from "../../../../components/Txt/Txt";
-import * as ImagePicker from "expo-image-picker";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../../store/store";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
@@ -12,6 +11,7 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import Octicons from "@expo/vector-icons/Octicons";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { logout } from "../../../../store/userSlice";
+import ProfileImagePicker from "./ProfileImagePicker/ProfileImagePicker";
 
 type ProfileScreenProps = NativeStackScreenProps<
   ProfileStackParamList,
@@ -27,9 +27,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
       <View className="bg-customBlack h-32 justify-end pb-3 items-center w-full">
         <Txt className="text-white text-3xl">Profile</Txt>
       </View>
-      <View className="w-24 h-24 items-center justify-center bg-gray-300 rounded-full my-8 self-center">
-        <AntDesign name="user" size={60} color="black" />
-      </View>
+      <ProfileImagePicker />
       <View className="bg-white p-2 gap-1 my-3 w-2/3 rounded-2xl">
         <View className="flex-row items-center gap-2">
           <AntDesign name="user" size={20} color="black" />
@@ -85,28 +83,3 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
 };
 
 export default ProfileScreen;
-
-// const [image, setImage] = useState<string | null>(null);
-//  const [file, setFile] = useState<any>();
-//  const pickImage = async () => {
-//    // No permissions request is necessary for launching the image library
-//    let result = await ImagePicker.launchImageLibraryAsync({
-//      mediaTypes: ["images", "videos"],
-//      allowsEditing: true,
-//      aspect: [4, 3],
-//      quality: 1,
-//      base64: true,
-//    });
-
-//    console.log(result);
-
-//    if (!result.canceled) {
-//      setFile(result.assets[0].base64);
-//      setImage(result.assets[0].uri);
-//    }
-//  };
-
-// <Button title="pick image" onPress={pickImage} />;
-// {
-//   image && <Image source={{ uri: image }} className="h-20 w-20" />;
-// }
