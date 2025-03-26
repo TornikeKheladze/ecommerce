@@ -1,5 +1,5 @@
 import { Control, Controller, FieldError } from "react-hook-form";
-import { TextInput, TouchableOpacity } from "react-native";
+import { TextInput, TextInputProps, TouchableOpacity } from "react-native";
 import Animated from "react-native-reanimated";
 import { useTranslateAnimation } from "../../hooks/useTranslateAnimation";
 import Txt from "../Txt/Txt";
@@ -14,6 +14,7 @@ type InputProps = {
   direction?: "x" | "y";
   initialOffset?: number;
   animate?: boolean;
+  props?: TextInputProps;
 };
 
 const Input: React.FC<InputProps> = ({
@@ -24,6 +25,7 @@ const Input: React.FC<InputProps> = ({
   direction = "x",
   initialOffset = -400,
   animate = false,
+  props,
 }) => {
   const inputAnimatedStyle = animate
     ? [useTranslateAnimation(direction, initialOffset, 300)]
@@ -46,6 +48,7 @@ const Input: React.FC<InputProps> = ({
             value={String(value)}
             secureTextEntry={isPasswordInput ? isHidden : false}
             placeholder={displayName}
+            {...props}
           />
         )}
         name={fieldName}

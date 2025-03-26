@@ -10,6 +10,7 @@ import Dropdown from "./Dropdown/Dropdown";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import SortBtn from "./SortBtn/SortBtn";
 import Txt from "../../../../components/Txt/Txt";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 type ProductListScreenProps = NativeStackScreenProps<
   HomeStackParamList,
@@ -40,6 +41,7 @@ const ProductListScreen: React.FC<ProductListScreenProps> = ({
   const { products, categories } = useSelector(
     (store: RootState) => store.products
   );
+  const { authorizedUser } = useSelector((store: RootState) => store.users);
 
   const [activeCategories, setActiveCategories] = useState(
     route.params.category ? [route.params.category] : []
@@ -173,6 +175,16 @@ const ProductListScreen: React.FC<ProductListScreenProps> = ({
           <FilterIcon color="#0d0c22" />
         </TouchableOpacity>
       </View>
+
+      {authorizedUser?.isAdmin && (
+        <TouchableOpacity
+          onPress={() => navigation.navigate("AddProduct")}
+          className="flex-row items-center  mt-3 gap-2 rounded-xl bg-customBlack p-2 w-1/2 justify-center mx-auto"
+        >
+          <Txt className="text-xl text-white">Add Product</Txt>
+          <MaterialIcons name="post-add" size={24} color="white" />
+        </TouchableOpacity>
+      )}
 
       <ScrollView className="bg-mainBg">
         <ProductList products={productsToRender} />

@@ -2,12 +2,13 @@ import { View, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { Product } from "../../types/common";
 import { HeartIcon } from "../../assets/icons";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { HomeStackParamList } from "../../navigation/AuthStacks/HomeStack";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { saveFavourites } from "../../store/favouritesSlice";
+import AntDesign from "@expo/vector-icons/AntDesign";
 import Txt from "../Txt/Txt";
 
 type ProductListPropTypes = {
@@ -17,6 +18,7 @@ type ProductListPropTypes = {
 const ProductList: React.FC<ProductListPropTypes> = ({ products }) => {
   const navigation =
     useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
+  const route = useRoute();
   const dispatch = useDispatch<AppDispatch>();
   const { authorizedUser } = useSelector((store: RootState) => store.users);
   const { usersWithFav } = useSelector((store: RootState) => store.favourites);
@@ -42,7 +44,7 @@ const ProductList: React.FC<ProductListPropTypes> = ({ products }) => {
   const goToProductPage = (product: Product) => {
     navigation.navigate("Product", { product });
   };
-
+  const isHomeTab = route.name === "ProductList" || route.name === "Home";
   return (
     <View className="flex-1 flex-row flex-wrap items-center justify-center gap-5 py-4">
       {products.map((item) => (
@@ -51,6 +53,16 @@ const ProductList: React.FC<ProductListPropTypes> = ({ products }) => {
           key={item.id}
           className="rounded-2xl w-[44%] h-52 bg-white justify-center items-center p-2 relative"
         >
+          {isHomeTab && authorizedUser?.isAdmin && (
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("EditProduct", { productId: item.id })
+              }
+              className="absolute left-2 top-2 rounded-md p-1 bg-gray-100"
+            >
+              <AntDesign name="edit" size={23} color="black" />
+            </TouchableOpacity>
+          )}
           <TouchableOpacity
             onPress={() => onFavouritePress(item)}
             className={`absolute top-2 right-2 rounded-md p-1 ${

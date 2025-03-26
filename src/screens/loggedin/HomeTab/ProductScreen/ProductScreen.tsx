@@ -23,7 +23,6 @@ const ProductScreen: React.FC<ProductScreenProps> = ({ route }) => {
     onAddCartPress,
     onFavouritePress,
     favouriteProducts,
-    testdata,
     scrollX,
     slideRef,
     viewConfig,
@@ -46,9 +45,8 @@ const ProductScreen: React.FC<ProductScreenProps> = ({ route }) => {
             horizontal
             showsHorizontalScrollIndicator={false}
             pagingEnabled
-            data={testdata}
+            data={product.images}
             keyExtractor={(item) => Math.random().toString()}
-            // keyExtractor={(item) => String(item.id)}
             viewabilityConfig={viewConfig}
             scrollEventThrottle={32}
             ref={slideRef}
@@ -60,7 +58,7 @@ const ProductScreen: React.FC<ProductScreenProps> = ({ route }) => {
             )}
             renderItem={(item) => <SlideItem uri={item.item} />}
           />
-          <Dots data={testdata} scrollX={scrollX} slideRef={slideRef} />
+          <Dots data={product.images} scrollX={scrollX} slideRef={slideRef} />
         </View>
 
         <View className="p-4 flex-row justify-between">

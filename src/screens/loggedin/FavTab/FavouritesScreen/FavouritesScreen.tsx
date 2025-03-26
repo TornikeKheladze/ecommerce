@@ -15,16 +15,16 @@ type FavouritesScreenProps = NativeStackScreenProps<
 const FavouritesScreen: React.FC<FavouritesScreenProps> = () => {
   const { authorizedUser } = useSelector((store: RootState) => store.users);
   const { usersWithFav } = useSelector((store: RootState) => store.favourites);
-  const favouriteProducts = usersWithFav.find(
-    (item) => item.userEmail === authorizedUser?.email
-  )?.favProducts;
+  const favouriteProducts =
+    usersWithFav.find((item) => item.userEmail === authorizedUser?.email)
+      ?.favProducts || [];
 
   return (
     <View className="bg-mainBg flex-1">
       <View className="bg-customBlack h-32 justify-end pb-3 items-center">
         <Txt className="text-white text-3xl">Favourites</Txt>
       </View>
-      {!favouriteProducts ? (
+      {favouriteProducts.length === 0 ? (
         <Txt className="w-full text-center text-xl mt-10 text-gray-500">
           No Favourite Products Yet
         </Txt>

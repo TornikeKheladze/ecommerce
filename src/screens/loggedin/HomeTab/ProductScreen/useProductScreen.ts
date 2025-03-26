@@ -16,9 +16,6 @@ export const useProductScreen = (
   const slideRef = useRef(null);
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
 
-  // Must Change
-  const testdata = [product.image, product.image, product.image];
-
   const dispatch = useDispatch<AppDispatch>();
   const { authorizedUser } = useSelector((store: RootState) => store.users);
   const { usersWithFav } = useSelector((store: RootState) => store.favourites);
@@ -62,7 +59,6 @@ export const useProductScreen = (
     onAddCartPress,
     onFavouritePress,
     favouriteProducts,
-    testdata,
     scrollX,
     slideRef,
     viewConfig,
