@@ -43,7 +43,7 @@ const CartScreen: React.FC<CartScreenProps> = ({ navigation }) => {
                   height: 120,
                   borderRadius: 12,
                 }}
-                source={{ uri: item[0].image }}
+                source={{ uri: item[0].images[0] }}
               />
               <View className="flex-1 justify-between">
                 <Txt>

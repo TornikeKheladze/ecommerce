@@ -68,7 +68,7 @@ const ProductList: React.FC<ProductListPropTypes> = ({ products }) => {
               height: 70,
               width: 70,
             }}
-            source={{ uri: item.image }}
+            source={{ uri: item.images[0] }}
           />
           <Txt className="text-sm text-center">
             {item.title.length > 40

@@ -66,7 +66,6 @@ const EditUserScreen: React.FC<EditUserScreenProps> = ({ navigation }) => {
           previousEmail: authorizedUser?.email,
         }
       : data;
-    console.log(updatedUserData);
     dispatch(editUser(updatedUserData as User));
     Alert.alert("Success", "User Edited", [
       {

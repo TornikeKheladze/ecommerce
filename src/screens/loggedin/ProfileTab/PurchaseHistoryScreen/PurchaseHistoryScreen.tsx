@@ -96,7 +96,7 @@ const PurchaseHistoryScreen: React.FC<PurchaseHistoryScreenProps> = ({
                       height: 70,
                       width: 70,
                     }}
-                    source={{ uri: products[0].image }}
+                    source={{ uri: products[0].images[0] }}
                   />
                 </View>
               ))}
