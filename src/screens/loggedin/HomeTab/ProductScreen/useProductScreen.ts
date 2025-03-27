@@ -3,9 +3,9 @@ import { useRef } from "react";
 import { HomeStackParamList } from "../../../../navigation/AuthStacks/HomeStack";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../../store/store";
-import { saveFavourites } from "../../../../store/favouritesSlice";
 import { saveCartProducts } from "../../../../store/cartSlice";
 import { RouteProp } from "@react-navigation/native";
+import { saveFavourites } from "../../../../store/productSlice";
 
 export const useProductScreen = (
   route: RouteProp<HomeStackParamList, "Product">
@@ -18,7 +18,7 @@ export const useProductScreen = (
 
   const dispatch = useDispatch<AppDispatch>();
   const { authorizedUser } = useSelector((store: RootState) => store.users);
-  const { usersWithFav } = useSelector((store: RootState) => store.favourites);
+  const { usersWithFav } = useSelector((store: RootState) => store.products);
   const { userWithCart } = useSelector((store: RootState) => store.cart);
 
   const favouriteProducts = usersWithFav.find(
@@ -52,7 +52,8 @@ export const useProductScreen = (
     );
   };
 
-  const currentProductInCart = cartProducts?.filter((p) => p.id === product.id);
+  const currentProductInCart =
+    cartProducts?.filter((p) => p.id === product.id) || [];
 
   return {
     currentProductInCart,

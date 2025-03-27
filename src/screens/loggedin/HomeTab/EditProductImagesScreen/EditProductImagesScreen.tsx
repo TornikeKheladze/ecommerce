@@ -120,16 +120,16 @@ const EditProductImagesScreen: React.FC<EditProductImagesScreenProps> = ({
                   }}
                   source={{ uri: image }}
                 />
-                <View className="flex-row justify-center gap-4 mt-3">
+                <View className="flex-row justify-center gap-4 mt-3 px-4">
                   <TouchableOpacity
                     onPress={upload}
-                    className="flex-row items-center gap-1 p-1 bg-green-600 rounded-full"
+                    className="flex-row items-center justify-center gap-1 p-1 bg-green-600 rounded-full flex-1"
                   >
                     <Txt className="text-white text-xs">Save</Txt>
                     <AntDesign name="save" size={15} color="white" />
                   </TouchableOpacity>
                   <TouchableOpacity
-                    className="rounded-full gap-1 bg-red-500 p-1 flex-row items-center"
+                    className="rounded-full gap-1 bg-red-500 p-1 flex-row justify-center items-center flex-1"
                     onPress={() => setImage(null)}
                   >
                     <Txt className="text-xs text-white">Cancel</Txt>

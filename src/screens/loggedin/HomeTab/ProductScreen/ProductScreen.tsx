@@ -79,10 +79,10 @@ const ProductScreen: React.FC<ProductScreenProps> = ({ route }) => {
           <AntDesign name="shoppingcart" size={20} color="white" />
           <Txt
             className={`absolute ${
-              currentProductInCart?.length === 0 ? "hidden" : ""
+              currentProductInCart.length === 0 ? "hidden" : ""
             } -top-2 -right-3 rounded-full text-white bg-green-500  text-center w-5 h-5 text-sm justify-center items-center`}
           >
-            {currentProductInCart?.length}
+            {currentProductInCart.length}
           </Txt>
         </View>
       </TouchableOpacity>

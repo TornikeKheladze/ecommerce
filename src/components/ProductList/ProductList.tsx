@@ -7,7 +7,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { HomeStackParamList } from "../../navigation/AuthStacks/HomeStack";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
-import { saveFavourites } from "../../store/favouritesSlice";
+import { saveFavourites } from "../../store/productSlice";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Txt from "../Txt/Txt";
 
@@ -21,7 +21,7 @@ const ProductList: React.FC<ProductListPropTypes> = ({ products }) => {
   const route = useRoute();
   const dispatch = useDispatch<AppDispatch>();
   const { authorizedUser } = useSelector((store: RootState) => store.users);
-  const { usersWithFav } = useSelector((store: RootState) => store.favourites);
+  const { usersWithFav } = useSelector((store: RootState) => store.products);
   const favouriteProducts = usersWithFav.find(
     (item) => item.userEmail === authorizedUser?.email
   )?.favProducts;

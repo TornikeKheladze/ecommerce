@@ -14,7 +14,7 @@ type FavouritesScreenProps = NativeStackScreenProps<
 
 const FavouritesScreen: React.FC<FavouritesScreenProps> = () => {
   const { authorizedUser } = useSelector((store: RootState) => store.users);
-  const { usersWithFav } = useSelector((store: RootState) => store.favourites);
+  const { usersWithFav } = useSelector((store: RootState) => store.products);
   const favouriteProducts =
     usersWithFav.find((item) => item.userEmail === authorizedUser?.email)
       ?.favProducts || [];

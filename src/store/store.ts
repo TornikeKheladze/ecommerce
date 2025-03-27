@@ -1,7 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "./userSlice";
 import productSlice from "./productSlice";
-import favouritesSlice from "./favouritesSlice";
 import cartSlice from "./cartSlice";
 import purchaseSlice from "./purchaseSlice";
 import {
@@ -19,20 +18,10 @@ import { mmkvStorage } from "./storage";
 const persistConfig = {
   key: "root",
   storage: mmkvStorage,
-  // whitelist: [
-  //   "categories",
-  //   "products",
-  //   "userPurchases",
-  //   "userWithCart",
-  //   "usersWithFav",
-  //   "authorizedUser",
-  //   "users",
-  // ],
 };
 
 const persistedUserReducer = persistReducer(persistConfig, userSlice);
 const persistedProductReducer = persistReducer(persistConfig, productSlice);
-const persistedFavReducer = persistReducer(persistConfig, favouritesSlice);
 const persistedCartReducer = persistReducer(persistConfig, cartSlice);
 const persistedPurchaseReducer = persistReducer(persistConfig, purchaseSlice);
 
@@ -40,7 +29,6 @@ export const store = configureStore({
   reducer: {
     users: persistedUserReducer,
     products: persistedProductReducer,
-    favourites: persistedFavReducer,
     cart: persistedCartReducer,
     purchase: persistedPurchaseReducer,
   },

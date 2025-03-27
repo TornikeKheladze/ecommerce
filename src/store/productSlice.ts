@@ -1,11 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Product } from "../types/common";
 
-type InitialState = { products: Product[]; categories: string[] };
+type InitialState = {
+  products: Product[];
+  categories: string[];
+  usersWithFav: { userEmail: string; favProducts: Product[] }[];
+};
 
 const initialState: InitialState = {
   products: [],
   categories: [],
+  usersWithFav: [],
 };
 
 const productSlice = createSlice({
@@ -26,9 +31,29 @@ const productSlice = createSlice({
         state.products[productIndex] = action.payload;
       }
     },
+    saveFavourites: (
+      state,
+      action: PayloadAction<{ userEmail: string; products: Product[] }>
+    ) => {
+      const { userEmail, products } = action.payload;
+
+      const userIndex = state.usersWithFav.findIndex(
+        (user) => user.userEmail === userEmail
+      );
+
+      const productsToUpdate = state.products.filter((stp) =>
+        products.map((p) => p.id).includes(stp.id)
+      );
+
+      if (userIndex !== -1) {
+        state.usersWithFav[userIndex].favProducts = productsToUpdate;
+      } else {
+        state.usersWithFav.push({ userEmail, favProducts: productsToUpdate });
+      }
+    },
   },
 });
 
-export const { saveProducts, saveCategories, editProduct } =
+export const { saveProducts, saveCategories, editProduct, saveFavourites } =
   productSlice.actions;
 export default productSlice.reducer;
