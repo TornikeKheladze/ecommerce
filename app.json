@@ -4,11 +4,11 @@
     "slug": "ecommerce",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/shopping-cart.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/shopping-cart.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -18,7 +18,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/shopping-cart.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.anonymous.ecommerce"
@@ -44,6 +44,18 @@
           "microphonePermission": "Allow ecommerce to access your microphone",
           "photosPermission": "The app accesses your photos to let you share them with your friends.",
           "recordAudioAndroid": true
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#232323",
+          "image": "./assets/shopping-cart.png",
+          "dark": {
+            "image": "./assets/shopping-cart.png",
+            "backgroundColor": "#000000"
+          },
+          "imageWidth": 200
         }
       ]
     ]
